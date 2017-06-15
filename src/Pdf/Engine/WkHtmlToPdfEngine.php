@@ -111,7 +111,11 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine
             'encoding' => $this->_Pdf->encoding(),
             'title' => $this->_Pdf->title(),
             'javascript-delay' => $this->_Pdf->delay(),
-            'window-status' => $this->_Pdf->windowStatus()
+            'window-status' => $this->_Pdf->windowStatus(),
+            'header-html' => $this->_Pdf->headerHtml(),
+            'footer-html' => $this->_Pdf->footerHtml(),
+            'viewport-size' => '1024x768'
+            
         ];
 
         $margin = $this->_Pdf->margin();
@@ -144,9 +148,16 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine
         $footer = $this->_Pdf->footer();
         foreach ($footer as $location => $text) {
             if ($text !== null) {
-                $command .= " --footer-$location \"" . addslashes($text) . "\"";
+                $command .= " --footer-$location \"" . $text . "\"";
             }
         }
+
+        $footerHTML = $this->_Pdf->footerHtml();
+      
+        if ($footerHTML !== null) {
+            $command .= " --footer-html \"" . ($footerHTML) . "\"";
+        }
+        
 
         $header = $this->_Pdf->header();
         foreach ($header as $location => $text) {
@@ -154,6 +165,13 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine
                 $command .= " --header-$location \"" . addslashes($text) . "\"";
             }
         }
+
+        $headerHtml = $this->_Pdf->headerHtml();
+      
+        if ($headerHtml !== null) {
+            $command .= " --header-html \"" . ($headerHtml) . "\"";
+        }
+        
         $command .= " - -";
 
         if ($this->_windowsEnvironment) {

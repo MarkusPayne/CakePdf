@@ -114,6 +114,7 @@ class CakePdf
      *
      * @var string
      */
+    protected $_footerHtml = null;
     protected $_footer = ['left' => null, 'center' => null, 'right' => null];
 
     /**
@@ -121,6 +122,7 @@ class CakePdf
      *
      * @var string
      */
+    protected $_headerHtml = null;
     protected $_header = ['left' => null, 'center' => null, 'right' => null];
 
     /**
@@ -258,7 +260,9 @@ class CakePdf
             'permissions',
             'cache',
             'delay',
-            'windowStatus'
+            'windowStatus',
+            'headerHtml',
+            'footerHtml'
         ];
         foreach ($options as $option) {
             if (isset($config[$option])) {
@@ -477,6 +481,17 @@ class CakePdf
         return $this;
     }
 
+    public function footerHtml($url = null)
+    {
+        if ($url === null) {
+            return $this->_footerHtml;
+        }
+
+        $this->_footerHtml = $url;
+
+        return $this;
+    }
+
     /**
      * Get/Set header HTML.
      *
@@ -496,6 +511,17 @@ class CakePdf
         }
 
         $this->_header = compact('left', 'center', 'right');
+
+        return $this;
+    }
+
+        public function headerHtml($url = null)
+    {
+        if ($url === null) {
+            return $this->_headerHtml;
+        }
+
+        $this->_headerHtml = $url;
 
         return $this;
     }
