@@ -114,7 +114,7 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine
             'window-status' => $this->_Pdf->windowStatus(),
             'header-html' => $this->_Pdf->headerHtml(),
             'footer-html' => $this->_Pdf->footerHtml(),
-            'viewport-size' => '1024x768'
+            'viewport-size' => $this->_Pdf->viewPort(),
             
         ];
 

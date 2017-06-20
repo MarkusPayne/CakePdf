@@ -95,6 +95,14 @@ class CakePdf
      */
     protected $_pageSize = 'A4';
 
+
+    /**
+     * viewport of the pdf
+     *
+     * @var string
+     */
+    protected $_viewPort = '1024x768';
+
     /**
      * Orientation of the pdf
      *
@@ -250,6 +258,7 @@ class CakePdf
 
         $options = [
             'pageSize',
+            'viewPort'
             'orientation',
             'margin',
             'title',
@@ -422,6 +431,23 @@ class CakePdf
             return $this->_pageSize;
         }
         $this->_pageSize = $pageSize;
+
+        return $this;
+    }
+
+
+    /**
+     * Get/Set viewport size.
+     *
+     * @param null|string $viewPort Page size to set
+     * @return mixed
+     */
+    public function viewPort($viewPort = null)
+    {
+        if ($viewPort === null) {
+            return $this->_viewPort;
+        }
+        $this->_viewPort = $viewPort;
 
         return $this;
     }
