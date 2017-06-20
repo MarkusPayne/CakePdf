@@ -258,7 +258,7 @@ class CakePdf
 
         $options = [
             'pageSize',
-            'viewPort'
+            'viewPort',
             'orientation',
             'margin',
             'title',
